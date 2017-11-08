@@ -1,0 +1,145 @@
+addmeetingroom.html
+	insert INTO meetingroom(roomnum,roomname,capacity,status,description) VALUES (102,"会议室A",30,"1","位于办公楼二楼左侧");
+
+approveaccount.html
+	SELECT employeename,username,phone,email FROM employee where status="0";
+
+bookmeeting.html
+	insert INTO meeting(meetingname,numberofparticipants,starttime,endtime,roomid,reservationtime,status) VALUES ("技术部部门会议",15,"2017-11-07 12:24","2017-11-07 12:58",1,"2017-11-01 11:11",1);
+	insert INTO meetingparticipants(meetingid,employeeid) VALUES(1,2)
+
+cancelmeeting.html
+	update meeting SET canceledtime="2017-11-06 23:57",Status="1" WHERE meetingid=1;
+
+changepassword.html
+	update employee set password="654987" where employeeid=1;
+
+departments.html
+	insert INTO department(departmentname) VALUES("后勤二部");
+	update department set departmentname="后勤保障部" where departmentname="后勤部";
+
+login.html
+	select employeeid from employee where username="张三" and password="123456";
+
+meetingdetails.html
+	select meetingname,numberofparticipants,starttime,endtime,description from meeting where meetingid=1;
+	update meeting set description="本会议将邀请专家参加。"  where  meetingid=1;
+
+meetingrooms.html
+	select roomnum,roomname,capacity,status from meetingroom;
+
+
+mybookings.html
+	select meetingname,roomname,starttime,endtime,reservationtime from meeting right join meetingroom ON (meeting.roomid = meetingroom.roomid)
+
+mymeetingdetails.html
+	select meetingname,numberofparticipants,starttime,endtime,description from meeting where meetingid=1;
+	update meeting set description="本会议将邀请专家参加。"  where  meetingid=1;
+
+mymeetings.html
+SELECT
+	meeting.meetingname,
+	meetingroom.roomname,
+	meeting.starttime,
+	meeting.endtime,
+	meeting.reservationtime,
+	employee.username AS reservationister
+FROM
+	(
+		meeting
+		JOIN meetingroom ON meeting.roomid = meetingroom.roomid
+	)
+JOIN employee ON meeting.reservationistid = employee.employeeid
+WHERE
+	meeting.meetingid IN (
+		SELECT
+			meetingid
+		FROM
+			meetingparticipants
+		WHERE
+			employeeid = 1
+	)
+
+
+notifications.html
+	SELECT
+	meeting.meetingname,
+	meetingroom.roomname,
+	meeting.starttime,
+	meeting.endtime,
+	meeting.reservationtime,
+	employee.username AS reservationister
+FROM
+	(
+		meeting
+		JOIN meetingroom ON meeting.roomid = meetingroom.roomid
+	)
+JOIN employee ON meeting.reservationistid = employee.employeeid
+WHERE
+	meeting.meetingid IN (
+		SELECT
+			meetingid
+		FROM
+			meetingparticipants
+		WHERE
+			employeeid = 1
+	)and   DATEDIFF(meeting.starttime,NOW())>7
+
+
+register.html
+roomdetails.html
+	select roomnum,roomname,capacity,status,description from meetingroom;
+
+searchemployees.html
+	select employeename,username,phone,email from employee where employeename="" and username="";
+
+searchmeetings.html
+SELECT
+	meeting.meetingname,
+	meetingroom.roomname,
+	meeting.starttime,
+	meeting.endtime,
+	meeting.reservationtime,
+	employee.username AS reservationister
+FROM
+	(
+		meeting
+		JOIN meetingroom ON meeting.roomid = meetingroom.roomid
+	)
+JOIN employee ON meeting.reservationistid = employee.employeeid
+WHERE
+	meeting.meetingid IN (
+		SELECT
+			meetingid
+		FROM
+			meetingparticipants
+		WHERE
+			employeeid = 1
+	)and (
+	meetingname = "人事部门例会"
+AND roomname = "会议室A")
+
+
+viewmeetingchange.html
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
