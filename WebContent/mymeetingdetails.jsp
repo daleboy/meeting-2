@@ -1,44 +1,50 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+﻿<%@ page language="java" pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
-    <head>
-         <mate charset="utf-8">
-        <title>CoolMeeting会议管理系统</title>
-        <link rel="stylesheet" href="styles/common.css"/>
-        <style type="text/css">
-            #divfrom{
-                float:left;
-                width:200px;
-            }
-            #divto{
-                float:left;
-                width:200px;
-            }
-            #divoperator{
-                float:left;
-                width:50px;
-                padding:60px 5px;
-            }
-            #divoperator input[type="button"]{
-                margin:10px 0;
-            }
-            #selDepartments{
-                display:block;
-                width:100%;
-            }
-            #selEmployees{
-                display:block;
-                width:100%;
-                height:200px;
-            }
-            #selSelectedEmployees{
-                display:block;
-                width:100%;
-                height:225px;
-            }
-        </style>
-        <script type="application/javascript">
+<head>
+<mate charset="utf-8">
+<title>CoolMeeting会议管理系统</title>
+<link rel="stylesheet" href="styles/common03.css" />
+<style type="text/css">
+#divfrom {
+	float: left;
+	width: 200px;
+}
+
+#divto {
+	float: left;
+	width: 200px;
+}
+
+#divoperator {
+	float: left;
+	width: 50px;
+	padding: 60px 5px;
+}
+
+#divoperator input[type="button"] {
+	margin: 10px 0;
+}
+
+#selDepartments {
+	display: block;
+	width: 100%;
+}
+
+#selEmployees {
+	display: block;
+	width: 100%;
+	height: 200px;
+}
+
+#selSelectedEmployees {
+	display: block;
+	width: 100%;
+	height: 225px;
+}
+</style>
+<script type="application/javascript">
+	
             function employee(employeeid, employeename){
                 this.employeeid = employeeid;
                 this.employeename = employeename;
@@ -48,15 +54,15 @@
                 this.departmentname = departmentname;
                 this.employees = employees;
             }
-            var data = new Array(
-                new department(1, "技术部", new Array(
-                    new employee(1001, "a00"), new employee(1002, "a01"), new employee(1003, "a02"), new employee(1004, "a03"))),
-                new department(2, "销售部", new Array(
-                    new employee(2001, "b00"), new employee(2002, "b01"), new employee(2003, "b02"), new employee(2004, "b03"))),
-                new department(3, "市场部", new Array(
-                    new employee(3001, "c00"), new employee(3002, "c01"), new employee(3003, "c02"), new employee(3004, "c03"))),
-                new department(4, "行政部", new Array(
-                    new employee(4001, "d00"), new employee(4002, "d01"), new employee(4003, "d02"), new employee(4004, "d03"))));
+//             var data = new Array(
+//                 new department(1, "技术部", new Array(
+//                     new employee(1001, "a00"), new employee(1002, "a01"), new employee(1003, "a02"), new employee(1004, "a03"))),
+//                 new department(2, "销售部", new Array(
+//                     new employee(2001, "b00"), new employee(2002, "b01"), new employee(2003, "b02"), new employee(2004, "b03"))),
+//                 new department(3, "市场部", new Array(
+//                     new employee(3001, "c00"), new employee(3002, "c01"), new employee(3003, "c02"), new employee(3004, "c03"))),
+//                 new department(4, "行政部", new Array(
+//                     new employee(4001, "d00"), new employee(4002, "d01"), new employee(4003, "d02"), new employee(4004, "d03"))));
             
             var selDepartments;
             var selEmployees;
@@ -146,138 +152,65 @@
                     selSelectedEmployees.insertBefore(opt, options[insertIndex]);
                 }
             }            
-        </script>
-    </head>
-    <body onload="body_load()">
-        <div class="page-header">
-            <div class="header-banner">
-                <img src="images/header.png" alt="CoolMeeting"/>
-            </div>
-            <div class="header-title">
-                欢迎访问Cool-Meeting会议管理系统
-            </div>
-            <div class="header-quicklink">
-                欢迎您，<strong>admin</strong>
-                <a href="changepassword.html">[修改密码]</a>
-            </div>
-        </div>
-        <div class="page-body">
-            <div class="page-sidebar">
-                <div class="sidebar-menugroup">
-                    <div class="sidebar-grouptitle">个人中心</div>
-                    <ul class="sidebar-menu">
-                        <li class="sidebar-menuitem"><a href="notifications.html">最新通知</a></li>
-                        <li class="sidebar-menuitem active"><a href="mybookings.html">我的预定</a></li>
-                        <li class="sidebar-menuitem"><a href="mymeetings.html">我的会议</a></li>
-                    </ul>
-                </div>
-                <div class="sidebar-menugroup">
-                    <div class="sidebar-grouptitle">人员管理</div>
-                    <ul class="sidebar-menu">
-                        <li class="sidebar-menuitem"><a href="departments.html">部门管理</></li>
-                        <li class="sidebar-menuitem"><a href="register.html">员工注册</a></li>
-                        <li class="sidebar-menuitem"><a href="approveaccount.html">注册审批</a></li>
-                        <li class="sidebar-menuitem"><a href="searchemployees.html">搜索员工</a></li>
-                    </ul>
-                </div>
-                <div class="sidebar-menugroup">
-                    <div class="sidebar-grouptitle">会议预定</div>
-                    <ul class="sidebar-menu">
-                        <li class="sidebar-menuitem"><a href="addmeetingroom.html">添加会议室</a></li>
-                        <li class="sidebar-menuitem"><a href="meetingrooms.html">查看会议室</a></li>
-                        <li class="sidebar-menuitem"><a href="bookmeeting.html">预定会议</a></li>
-                        <li class="sidebar-menuitem"><a href="searchmeetings.html">搜索会议</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="page-content">
-                <div class="content-nav">
-                    会议预定 > 修改会议预定
-                </div>
-                <form>
-                    <fieldset>
-                        <legend>会议信息</legend>
-                        <table class="formtable">
-                            <tr>
-                                <td>会议名称：</td>
-                                <td>市场部总结会议</td>
-                            </tr>
-                            <tr>
-                                <td>预计参加人数：</td>
-                                <td>15</td>
-                            </tr>
-                            <tr>
-                                <td>预计开始时间：</td>
-                                <td>2013-10-21 14:50</td>
-                            </tr>
-                            <tr>
-                                <td>预计结束时间：</td>
-                                <td>2013-10-21 18:50
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>会议说明：</td>
-                                <td>
-                                    <textarea id="description" rows="5" readonly>本会议将邀请专家参加。</textarea>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>参会人员：</td>
-                                <td>
-                                    <table class="listtable">
-                                        <tr class="listheader">
-                                            <th>姓名</th>
-                                            <th>联系电话</th>
-                                            <td>电子邮件</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jerry</td>
-                                            <td>13800138000</td>
-                                            <td>jerry@chinasofti.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jerry</td>
-                                            <td>13800138000</td>
-                                            <td>jerry@chinasofti.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jerry</td>
-                                            <td>13800138000</td>
-                                            <td>jerry@chinasofti.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jerry</td>
-                                            <td>13800138000</td>
-                                            <td>jerry@chinasofti.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jerry</td>
-                                            <td>13800138000</td>
-                                            <td>jerry@chinasofti.com</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jerry</td>
-                                            <td>13800138000</td>
-                                            <td>jerry@chinasofti.com</td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="command" colspan="2">
-                                    <input type="button" class="clickbutton" value="撤销会议" onclick="window.location.href='cancelmeeting.html';"/>
-                                    <input type="button" class="clickbutton" value="返回" onclick="window.history.back();"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-        <div class="page-footer">
-            <hr/>
-            更多问题，欢迎联系<a href="mailto:webmaster@eeg.com">管理员</a>
-            <img src="images/footer.png" alt="CoolMeeting"/>
-        </div>
-    </body>
+        
+</script>
+</head>
+<body onload="body_load()">
+
+	<div class="page-content">
+		<div class="content-nav">会议预定 > 我要参加的会议详情</div>
+		<form>
+			<fieldset>
+				<legend>会议信息</legend>
+				<table class="formtable">
+					<tr>
+						<td>会议名称：</td>
+						<td>${requestScope.meeting.meetingname }</td>
+					</tr>
+					<tr>
+						<td>预计参加人数：</td>
+						<td>${requestScope.meeting.numberofparticipants }</td>
+					</tr>
+					<tr>
+						<td>预计开始时间：</td>
+						<td>${requestScope.meeting.starttime }</td>
+					</tr>
+					<tr>
+						<td>预计结束时间：</td>
+						<td>${requestScope.meeting.endtime }</td>
+					</tr>
+					<tr>
+						<td>会议说明：</td>
+						<td><textarea id="description" rows="5" readonly>${requestScope.meeting.description }</textarea>
+						</td>
+					</tr>
+					<tr>
+						<td>参会人员：</td>
+						<td>
+							<table class="listtable">
+								<tr class="listheader">
+									<th>姓名</th>
+									<th>联系电话</th>
+									<td>电子邮件</td>
+								</tr>
+								<c:forEach var="emp" items="${requestScope.list}">
+									<tr>
+										<td>${emp.employeename}</td>
+										<td>${emp.phone }</td>
+										<td>${emp.email }</td>
+									</tr>
+								</c:forEach>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td class="command" colspan="1">
+						<input type="button"  class="clickbutton" value="返回" onclick="window.history.back();" />
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+		</form>
+	</div>
+</body>
 </html>
